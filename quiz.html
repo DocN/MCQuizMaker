@@ -11,14 +11,29 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <!-- JS scripts-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/Controller/Controller.js" defer></script>  
-    <script type="text/javascript" src="js/Controller/View.js" defer></script>  
+    <script type="text/javascript" src="js/View/QuizView.js" defer></script>  
+    <script type="text/javascript" src="js/View/NavView.js" defer></script>  
     <!-- JS classes-->
     <script type="text/javascript" src="js/Model/Word.js" defer></script>  
+    <script type="text/javascript" src="js/Model/NavItem.js" defer></script>  
+    <script type="text/javascript" src="js/Model/Question.js" defer></script>  
     
     <title>Quiz Demo</title>
   </head>
-  <body>
-
+  <body onload="loadView()">
+    <div class="nav">
+      <div class="container-fluid bgcolor">
+        <div class="container">
+          <div class="row">
+            <div class="col-2">
+              <div id="title"></div>
+            </div>
+            <div class="col-9">
+              <div id="navItems"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

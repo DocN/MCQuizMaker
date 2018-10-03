@@ -19,7 +19,6 @@ function closeQuizCreate() {
     let container = document.getElementById("addQuestionContainer");
     container.style.visibility = "hidden";
     container.style.position = "absolute";
-    
 }
 
 function submitQuizQuestion() {
@@ -34,6 +33,7 @@ function submitQuizQuestion() {
     questions.push(currentQues);
     console.log(questions);
     showQuestions();
+    //closeQuizCreate();
 }
 
 function getRadioCheck() {
@@ -62,4 +62,7 @@ function saveStorage() {
 
 function loadStorage() {
     questions = JSON.parse(localStorage.getItem('quiz'));
+    if(questions == null) {
+        questions = [];
+    }
 }
