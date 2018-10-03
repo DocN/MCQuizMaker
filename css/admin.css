@@ -1,0 +1,54 @@
+.quizQuestion {
+    margin:0;
+    width:100%;
+    white-space:"nowrap";
+}
+
+.quizChoiceInput {
+    margin:0;
+    width:100%;
+    white-space:"nowrap";
+}
+
+#addQuestionContainer {
+    margin-top:20px;
+    padding:10px;
+    text-align:center;
+    visibility: hidden;
+}
+
+.flexContainer {
+    display: flex;
+    width:100%;
+}
+
+legend {
+    background-color: #000;
+    color: #fff;
+    padding: 3px 6px;
+}
+
+.output {
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input {
+    margin: .4rem;
+}
+
+form {
+    margin-bottom:10px;
+}
+
+.btnMargin {
+    margin-left:5px;
+}
+
+#formContainer {
+    margin-top:10px;
+    margin-bottom:10px;
+    padding:5px;
+    border:green 2px solid;
+}
+
+

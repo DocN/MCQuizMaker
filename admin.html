@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- stylez -->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/admin.css">
+    <!-- JS scripts-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/Controller/Controller.js" defer></script>  
+    <script type="text/javascript" src="js/View/view.js" defer></script>  
+    <!-- JS classes-->
+    <script type="text/javascript" src="js/Model/Word.js" defer></script>  
+    <script type="text/javascript" src="js/Model/NavItem.js" defer></script>  
+    <script type="text/javascript" src="js/Model/Question.js" defer></script>  
+    <title>Quiz Demo - Admin</title>
+  </head>
+  <body onload="onload()">
+    <div class="nav">
+      <div class="container-fluid bgcolor">
+        <div class="container">
+          <div class="row">
+            <div class="col-2">
+              <div id="title"></div>
+            </div>
+            <div class="col-9">
+              <div id="navItems"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+          <div id="addQuestionContainer"></div>
+        </div>
+        <div class="col-1"></div>
+      </div>
+    </div>
+  </body>
+</html>

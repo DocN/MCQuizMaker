@@ -11,73 +11,14 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <!-- JS scripts-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/Model/Word.js" defer></script>  
     <script type="text/javascript" src="js/Controller/Controller.js" defer></script>  
-    <title>Hang Yourself Man</title>
+    <script type="text/javascript" src="js/Controller/View.js" defer></script>  
+    <!-- JS classes-->
+    <script type="text/javascript" src="js/Model/Word.js" defer></script>  
+    
+    <title>Quiz Demo</title>
   </head>
-  <body onload="onLoaded()">
-    <div id="winModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-            <h2 class="winLoseFont">Congrats you won!</h2>
-            <button type="button" class="btn btn-success restart" onClick="restart()">Reset</button>
-        </div>
-    </div>
-    <div id="loseModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-            <h2 class="winLoseFont">You lost sadly you weren't able to finish the job :(</h2>
-            <div id ="ans" class="winLoseFont"></div>
-            <button type="button" class="btn btn-success restart" onClick="restart()">Reset</button>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="titleFont">Hang Yourself Man</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
-                <div id="score">
-                    User Score: 0
-                </div>
-                <button type="button" class="btn btn-success restart" onClick="restart()">Reset</button>
-            </div>
-            <div class="col-3"></div>
-        </div>
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10">
-                <div class="imagecontainer">
-                    <img id = "gallow" class="img-fluid gallow" src="images/gallow.png">
-                </div>
-               
-            </div>
-            <div class="col-1"></div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div id="wordContainer"></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10">
-                <div id="defFrame"></div>
-            </div>
-            <div class="col-1"></div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10">
-                <div id="alphabetFrame"></div>
-            </div>
-            <div class="col-1"></div>
-        </div>
-    </div>
+  <body>
+
   </body>
 </html>

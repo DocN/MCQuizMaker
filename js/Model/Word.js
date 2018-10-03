@@ -3,9 +3,7 @@ class Word {
       this.word = word;
       this.description = desc;
     }
-
-
-
+    
     set setDesc(desc) {
         this.description = desc;
     }
