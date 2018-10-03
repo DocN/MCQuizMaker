@@ -1,7 +1,9 @@
 var questions = [];
 
 function onload() {
+    loadStorage();
     loadView();
+    showQuestions();
 }
 
 function clearQuizCreate() {
@@ -14,18 +16,50 @@ function clearQuizCreate() {
 }
 
 function closeQuizCreate() {
-    document.getElementById("addQuestionContainer").style.visibility = "hidden";
+    let container = document.getElementById("addQuestionContainer");
+    container.style.visibility = "hidden";
+    container.style.position = "absolute";
     
 }
 
 function submitQuizQuestion() {
-    let question = document.getElementById("quizQuestion");
+    let question = document.getElementById("quizQuestion").value;
     let choices = [];
     for(let i =1; i <= 4; i++) {
         choices.push(document.getElementById("quizChoiceInput" + i).value);
     }
-    let answer = document.getElementById("answerRadioForm").value;
-    let currentQues = new Question(question.innerText, choices);
+    
+    let answer = getRadioCheck();
+    let currentQues = new Question(question, choices, answer);
     questions.push(currentQues);
     console.log(questions);
+    showQuestions();
+}
+
+function getRadioCheck() {
+    for(let i=1; i <=4; i++) {
+        let currentRadio = document.getElementById("radioCheck" + i);
+        console.log(currentRadio);
+        if(currentRadio.checked == true) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+function removeQuestion(val) {
+    let str = val;
+    let count = str.replace("deleteQuestion", "");
+    count--;
+    questions.splice(count, 1);
+    console.log(count);
+    showQuestions();
+}
+
+function saveStorage() {
+    localStorage.setItem('quiz', JSON.stringify(questions));
+}
+
+function loadStorage() {
+    questions = JSON.parse(localStorage.getItem('quiz'));
 }

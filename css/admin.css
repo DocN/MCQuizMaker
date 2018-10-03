@@ -11,7 +11,6 @@
 }
 
 #addQuestionContainer {
-    margin-top:20px;
     padding:10px;
     text-align:center;
     visibility: hidden;
@@ -51,4 +50,15 @@ form {
     border:green 2px solid;
 }
 
+.deleteQuestion {
+    text-align:left;
+    color:red;
+    font-weight:bold;
+    cursor: pointer;
+}
 
+#controlContainer {
+    margin-top:10px;
+    margin-bottom:10px;
+    text-align:center;
+}

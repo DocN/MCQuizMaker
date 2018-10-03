@@ -1,12 +1,40 @@
 const PAGE_TITLE = "Quiz Demo";
 const QUIZ_QUESTION = "quizQuestion";
 const QUIZ_INPUT_CHOICE = "quizChoiceInput";
+var tableCount = 0;
 
 function loadView() {
     console.log("loaded");
     setTitle();
     createNavs();
-    createAdminNavs();
+    createControls();
+
+    //load overview questions
+    
+}
+
+function createControls() {
+    let controlContainer = document.getElementById("controlContainer");
+    let createQuestBtn = createQuestionBtn();
+    let saveBtn = createSaveBtn();
+    controlContainer.appendChild(createQuestBtn);
+    controlContainer.appendChild(saveBtn);
+}
+
+function createQuestionBtn() {
+    let btn = document.createElement("button");
+    btn.className = "btn btn-success btnMargin";
+    btn.setAttribute("onclick", "showQuizCreator()");
+    btn.innerText = "Create Question";
+    return btn;
+}
+
+function createSaveBtn() {
+    let btn = document.createElement("button");
+    btn.className = "btn btn-primary btnMargin";
+    btn.setAttribute("onclick", "saveStorage()");
+    btn.innerText = "Save Questions";
+    return btn;
 }
 
 function createNavs() {
@@ -16,26 +44,12 @@ function createNavs() {
     createNavItem(navAdmin);
 }
 
-function createAdminNavs() {
-    let navCreateQuest = new NavItem("Create Question", "");
-    createfuncLink(navCreateQuest, "showQuizCreator()");
-}
 function createNavItem(item) {
     let navItem = document.createElement("a");
     navItem.href = item.url;
     let t = document.createTextNode(item.title);
     navItem.appendChild(t);
     navItem.className = "navItem";
-    let navbar = document.getElementById("navItems");
-    navbar.appendChild(navItem);
-}
-
-function createfuncLink(item, functionCall) {
-    let navItem = document.createElement("funcer");
-    let t = document.createTextNode(item.title);
-    navItem.appendChild(t);
-    navItem.className = "navItem";
-    navItem.setAttribute("onClick", functionCall);
     let navbar = document.getElementById("navItems");
     navbar.appendChild(navItem);
 }
@@ -48,6 +62,7 @@ function setTitle() {
 function showQuizCreator() {
     let addQuestionContainer = document.getElementById("addQuestionContainer");
     addQuestionContainer.style.visibility = "visible";
+    addQuestionContainer.style.position = "relative";
     addQuestionContainer.innerHTML = "";
     //create header 
     let createQHeader = document.createElement("h3");
@@ -114,6 +129,8 @@ function createRadioBtns(choiceNumber) {
     let radio = document.createElement("input");
     radio.setAttribute("type", "radio");
     radio.setAttribute("name", "choice");
+    radio.id = "radioCheck" + choiceNumber;
+    console.log(radio.id);
     if(choiceNumber == 1) {
         radio.setAttribute("checked", "checked");
     }
@@ -149,6 +166,108 @@ function createBtnCancel() {
     btn.setAttribute("onclick", "closeQuizCreate()");
     btn.innerText = "Cancel";
     return btn; 
+}
+
+//quiz overview
+function showQuestions() {
+    tableCount = 0;
+    for(let i =0; i < questions.length; i++) {
+        console.log(questions[i]);
+    }
+    questionOverview.innerHTML = "";
+    questionOverview.appendChild(createTable());
+}
+
+function createTable() {
+    let tableresponse = document.createElement("div");
+    tableresponse.className = "table-responsive-sm";
+    let table = document.createElement("table");
+    table.className="table";
+    let thead = document.createElement("thead");
+    let tr = createTableHeader();
+    thead.appendChild(tr);
+    table.appendChild(thead);
+    let tbody = createTBody();
+    
+    for(let i =0; i < questions.length; i++) {
+        let trBody = createRow(questions[i]);
+        tbody.appendChild(trBody);
+    }
+
+    table.appendChild(tbody);
+    tableresponse.appendChild(table);
+    return tableresponse;
+}
+
+function createTableHeader() {
+    let tr = document.createElement("tr");
+    let header0 = document.createElement("th");
+    header0.setAttribute("scope", "col");
+    header0.innerText = "#";
+    let header1 = document.createElement("th");
+    header1.setAttribute("scope", "col");
+    header1.innerText = "Question";
+    let header2 = document.createElement("th");
+    header2.setAttribute("scope", "col");
+    header2.innerText = "Choices";
+    let header3 = document.createElement("th");
+    header3.innerText = "Delete";
+    header3.setAttribute("scope", "col");
+    tr.appendChild(header0);
+    tr.appendChild(header1);
+    tr.appendChild(header2);
+    tr.appendChild(header3);
+    return tr;
+}
+
+function createTBody() {
+    let tbody = document.createElement("tbody");
+    return tbody;
+}
+
+function createRow(currentQuestion) {
+    tableCount = Number(tableCount) + 1;
+    tr = document.createElement("tr");
+    th = document.createElement("th");
+    th.setAttribute("scope", "row");
+    th.innerText = tableCount;
+    tr.appendChild(th);
+    let questionTD = document.createElement("td");
+    questionTD.innerText = currentQuestion.question;
+
+    let choices = document.createElement("td");
+    for(let i=0; i < currentQuestion.choices.length; i++) {
+        let currentCount = (Number(i) +1);
+        
+        
+        if(currentCount == currentQuestion.answer) {
+            currentB = document.createElement("b");
+            currentB.innerText = currentCount + ". " + currentQuestion.choices[i];
+            choices.appendChild(currentB);
+        }
+        else {
+            currentP = document.createElement("div");
+            currentP.innerText =  currentCount + ". " + currentQuestion.choices[i];
+            choices.appendChild(currentP);
+        }
+        
+    }
+    let answer = document.createElement("td");
+    answer.innerText = currentQuestion.answer;
+
+    tr.appendChild(questionTD);
+    tr.appendChild(choices);
+    tr.appendChild(createDelete(tableCount));
+    return tr;
+}
+
+function createDelete(counter) {
+    let deleter = document.createElement("td");
+    deleter.innerText = "X";
+    deleter.id = "deleteQuestion" + counter;
+    deleter.className = "deleteQuestion";
+    deleter.setAttribute("onclick", "removeQuestion(this.id)");
+    return deleter;
 }
 
 function tester() {
