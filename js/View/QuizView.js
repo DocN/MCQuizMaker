@@ -2,11 +2,13 @@ const PAGE_TITLE = "Quiz Demo";
 const QUEST_FRAME = "questFrame";
 var radioCount = 1;
 
+//sets the title of the page
 function setTitle() {
     var title = document.getElementById("title");
     title.innerText = PAGE_TITLE;
 }
 
+//creates the quiz to answer
 function createQuiz() {
     let quizContainer = document.getElementById("quizContainer");
     if(questions.length <= 0) {
@@ -29,12 +31,15 @@ function createQuiz() {
     buttContainer.appendChild(createSubmitButton());
 }
 
+//called when there's no quiz
 function noQuiz() {
     let noQuiz = document.createElement("h1");
     noQuiz.className = "noQuiz";
     noQuiz.innerText = "There's no quiz here buddy";
     return noQuiz;
 }
+
+//called to create the radio buttons to answer mc
 function createRadioAns(question) {
     let questionview = document.createElement("div");
     let form = createForm();
@@ -48,12 +53,14 @@ function createRadioAns(question) {
     return form;
 }
 
+//creates a label for the choice
 function createLabel(index, choiceDesc) {
     let myLbl = document.createElement("label");
     myLbl.innerText =  (Number(index) + 1) + ". " + choiceDesc;
     return myLbl;
 }
 
+//creates a radio button
 function createRadioBtns(choiceNumber) {
     radioCount = radioCount + 1;
     let radio = document.createElement("input");
@@ -66,17 +73,19 @@ function createRadioBtns(choiceNumber) {
     return radio;
 }
 
-
+//creates a form for radio buttons
 function createForm() {
     let form = document.createElement("form");
     form.id = "answerRadioForm";
     return form;
 }
 
+//next line element
 function createBR() {
     return document.createElement("br");
 }
 
+//creates a submit button for submitting results
 function createSubmitButton() {
     let btn = document.createElement("button");
     btn.id = "submitButtonID";
@@ -86,6 +95,7 @@ function createSubmitButton() {
     return btn;
 }
 
+//changes to reset button after quiz is done
 function changeToResetButton() {
     let btn = document.getElementById("submitButtonID");
     btn.setAttribute("onclick", "reloadPage()");

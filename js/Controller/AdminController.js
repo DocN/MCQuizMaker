@@ -49,6 +49,7 @@ function submitQuizQuestion() {
     //closeQuizCreate();
 }
 
+//gets the radiocheck value
 function getRadioCheck() {
     for(let i=1; i <=4; i++) {
         let currentRadio = document.getElementById("radioCheck" + i);
@@ -60,6 +61,7 @@ function getRadioCheck() {
     return -1;
 }
 
+//removes a question
 function removeQuestion(val) {
     let str = val;
     let count = str.replace("deleteQuestion", "");
@@ -69,10 +71,12 @@ function removeQuestion(val) {
     showQuestions();
 }
 
+//save to local storage
 function saveStorage() {
     localStorage.setItem('quiz', JSON.stringify(questions));
 }
 
+//load from local storage
 function loadStorage() {
     questions = JSON.parse(localStorage.getItem('quiz'));
     if(questions == null) {
@@ -80,6 +84,7 @@ function loadStorage() {
     }
 }
 
+//validate creating a question
 function validateCreate() {
     if(document.getElementById("quizQuestion").value == "") {
         return false;
@@ -93,6 +98,7 @@ function validateCreate() {
     return true;
 }
 
+//edit question function calls editing frame
 function editQuestion(val) {
     let str = val;
     let count = str.replace("editQuestion", "");
@@ -109,12 +115,14 @@ function editQuestion(val) {
     changeUpdateButton();
 }
 
+//reset the radio buttons in the frame
 function resetRadioCreate(count) {
     document.getElementById("radioCheck1").checked = false;
     let ans = questions[count].answer;
     document.getElementById(radioCheck + ans).checked = true;
 }
 
+//update the submit button default to a save btn
 function changeUpdateButton() {
     let submitBut = document.getElementById("submitCreateBtn");
     submitBut.setAttribute("onclick", "editVal()");
@@ -122,6 +130,7 @@ function changeUpdateButton() {
 
 }
 
+//submits the editing values
 function editVal() {
     if(validateCreate() == false) {
         document.getElementById("errorBox").innerText = "Please fill in all fields D:<";
@@ -137,6 +146,7 @@ function editVal() {
     showQuestions();
 }
 
+//gets the answer from the radio button form
 function getRadioEditAns() {
     for(let i =1; i <= 4; i++) {
         let currentRadio  = document.getElementById(radioCheck + i);

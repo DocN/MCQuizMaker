@@ -1,6 +1,7 @@
 var questions = [];
 const RADIOBUTTS = "radioCheck";
 
+//load stuff on start
 function loadView() {
     console.log("quiz loaded");
     setTitle();
@@ -10,6 +11,8 @@ function loadView() {
     //load overview questions
     
 }
+
+//load local storage quiz questions
 function loadStorage() {
     questions = JSON.parse(localStorage.getItem('quiz'));
     if(questions == null) {
@@ -18,6 +21,7 @@ function loadStorage() {
     console.log(questions);
 }
 
+//mark the quiz 
 function markQuiz() {
     if(validateSelection()) {
         let answers = getAnswers();
@@ -32,6 +36,7 @@ function markQuiz() {
     }
 }
 
+//make sure all radio boxes have been selected for all answers
 function validateSelection() {
     for(let i =1; i<=questions.length*4; i+=4) {
         let foundFour = false;
@@ -48,6 +53,7 @@ function validateSelection() {
     return true;
 }
 
+//gets the answers that the user submitted
 function getAnswers() {
     let answersList = [];
     for(let i =1; i<=questions.length*4; i+=4) {
@@ -62,6 +68,7 @@ function getAnswers() {
     return answersList;
 }
 
+//compares the answers with the answer key
 function compareAnswers(answers) {  
     let marked = [];
     for(let i =0; i< questions.length; i++) {
@@ -75,6 +82,7 @@ function compareAnswers(answers) {
     return marked;
 }
 
+//show results after the quiz is taken
 function postResults(marked) {
     for(let i=0; i < marked.length; i++) {
         let currentQuestion = document.getElementById(QUEST_FRAME + i);
@@ -92,6 +100,7 @@ function postResults(marked) {
     }
 }
 
+//turns off all radio buttons
 function disableRadios() {
     var x = document.getElementsByClassName("checkbox");
     var i;
@@ -100,10 +109,12 @@ function disableRadios() {
     }
 }
 
+//reset the page
 function reloadPage() {
     location.reload();
 }
 
+//show errors when submitting
 function showError() {
     let error = document.createElement("h1");
     error.innerText = "PLEASE ANSWER ALL THE QUESTIONS";
@@ -111,6 +122,7 @@ function showError() {
     errorcontainer.appendChild(error);
 }
 
+//show the result
 function showScore(marked) {
     let score = document.createElement("h1");
     let myScore = checkMarked(marked);
@@ -127,6 +139,7 @@ function showScore(marked) {
     
 }
 
+//calculate score
 function checkMarked(marked) {
     let wrong = 0;
     let correct = 0;

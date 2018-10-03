@@ -3,6 +3,7 @@ const QUIZ_QUESTION = "quizQuestion";
 const QUIZ_INPUT_CHOICE = "quizChoiceInput";
 var tableCount = 0;
 
+//load the admin view
 function loadView() {
     console.log("loaded");
     setTitle();
@@ -13,6 +14,7 @@ function loadView() {
     
 }
 
+//creates the admin controls
 function createControls() {
     let controlContainer = document.getElementById("controlContainer");
     let createQuestBtn = createQuestionBtn();
@@ -21,6 +23,7 @@ function createControls() {
     controlContainer.appendChild(saveBtn);
 }
 
+//creates the question button 
 function createQuestionBtn() {
     let btn = document.createElement("button");
     btn.className = "btn btn-success btnMargin";
@@ -29,6 +32,7 @@ function createQuestionBtn() {
     return btn;
 }
 
+//creates the saving button
 function createSaveBtn() {
     let btn = document.createElement("button");
     btn.className = "btn btn-primary btnMargin";
@@ -37,11 +41,13 @@ function createSaveBtn() {
     return btn;
 }
 
+//sets the title of the page
 function setTitle() {
     var title = document.getElementById("title");
     title.innerText = PAGE_TITLE;
 }
 
+//creates the quiz creator 
 function showQuizCreator() {
     let addQuestionContainer = document.getElementById("addQuestionContainer");
     addQuestionContainer.style.visibility = "visible";
@@ -77,12 +83,15 @@ function showQuizCreator() {
     addQuestionContainer.appendChild(createBtnCancel());
 }
 
+//creates the error message frame
 function createErrorBox() {
     let errorBox = document.createElement("h4");
     errorBox.id = "errorBox";
     errorBox.style.color = "red";
     return errorBox;
 }
+
+//creates the question box for the creation/editing
 function createQuestionBox() {
     //create textbox 
     let createQuestTextbox = document.createElement("input");
@@ -91,10 +100,7 @@ function createQuestionBox() {
     return createQuestTextbox;
 }
 
-function createChoice() {
-
-}
-
+//creates an input box 
 function createInputBox(indexVal) {
     //create textbox 
     let createQuestTextbox = document.createElement("input");
@@ -102,22 +108,27 @@ function createInputBox(indexVal) {
     createQuestTextbox.className = "pull-left " + QUIZ_INPUT_CHOICE;
     return createQuestTextbox;
 }
+
+//creates a next line break
 function createBR() {
     return document.createElement("br");
 }
 
+//creates a form container
 function createFContainer() {
     let container = document.createElement("div");
     container.id = "formContainer";
     return container;
 }
 
+//creates a form for radio btns
 function createForm() {
     let form = document.createElement("form");
     form.id = "answerRadioForm";
     return form;
 }
 
+//creates radio buttons
 function createRadioBtns(choiceNumber) {
     let radio = document.createElement("input");
     radio.setAttribute("type", "radio");
@@ -131,12 +142,14 @@ function createRadioBtns(choiceNumber) {
     return radio;
 }
 
+//creates a label for a radio btn
 function createLabel(choiceNumber) {
     let myLbl = document.createElement("label");
     myLbl.innerText = "Answer: " + choiceNumber;
     return myLbl;
 }
 
+//creates a submit button for new question
 function createBtnSubmit() {
     let btn = document.createElement("button");
     btn.id = "submitCreateBtn";
@@ -146,6 +159,7 @@ function createBtnSubmit() {
     return btn;
 }
 
+//creates a clear button for the quiz creation form
 function createBtnClear() {
     let btn = document.createElement("button");
     btn.className = "btn btn-info btnMargin";
@@ -154,6 +168,7 @@ function createBtnClear() {
     return btn; 
 }
 
+//creates a cancel button to close creation/edit window
 function createBtnCancel() {
     let btn = document.createElement("button");
     btn.className = "btn btn-danger btnMargin";
@@ -172,6 +187,7 @@ function showQuestions() {
     questionOverview.appendChild(createTable());
 }
 
+//creates a table of all questions
 function createTable() {
     let tableresponse = document.createElement("div");
     tableresponse.className = "table-responsive-sm";
@@ -193,6 +209,7 @@ function createTable() {
     return tableresponse;
 }
 
+//creates the header of our quiz table
 function createTableHeader() {
     let tr = document.createElement("tr");
     let header0 = document.createElement("th");
@@ -218,11 +235,13 @@ function createTableHeader() {
     return tr;
 }
 
+//creates the body of the quiz 
 function createTBody() {
     let tbody = document.createElement("tbody");
     return tbody;
 }
 
+//creates a row of the quiz
 function createRow(currentQuestion) {
     tableCount = Number(tableCount) + 1;
     tr = document.createElement("tr");
@@ -260,6 +279,7 @@ function createRow(currentQuestion) {
     return tr;
 }
 
+//creates a delete button for removing quiz question
 function createDelete(counter) {
     let deleter = document.createElement("td");
     deleter.innerText = "X";
@@ -268,7 +288,7 @@ function createDelete(counter) {
     deleter.setAttribute("onclick", "removeQuestion(this.id)");
     return deleter;
 }
-
+//creates a delete button for editing quiz question
 function createEdit(counter) {
     let editer = document.createElement("td");
     editer.innerText = "Edit";
@@ -276,9 +296,4 @@ function createEdit(counter) {
     editer.className = "editQuestion";
     editer.setAttribute("onclick", "editQuestion(this.id)");
     return editer;
-}
-
-
-function tester() {
-    console.log("test");
 }
