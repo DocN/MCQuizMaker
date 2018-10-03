@@ -1,4 +1,24 @@
 #quizContainer{
+    padding:10px;
     width:100%;
     border:1px solid black;
+}
+
+#buttonSubmit {
+    padding:10px;
+    text-align:right;
+}
+
+.submitButt {
+    width:40%;
+}
+
+.wrong{
+    color:red;
+    font-weight:500;
+}
+
+.correct {
+    color:green;
+    font-weight:500;
 }

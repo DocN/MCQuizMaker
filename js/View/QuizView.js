@@ -1,4 +1,6 @@
 const PAGE_TITLE = "Quiz Demo";
+const QUEST_FRAME = "questFrame";
+var radioCount = 1;
 
 function setTitle() {
     var title = document.getElementById("title");
@@ -9,20 +11,25 @@ function createQuiz() {
     let quizContainer = document.getElementById("quizContainer");
     
     for(let i =0; i < questions.length; i++) {
-        let currentQuest = document.createElement("p");
+        let currentQuestFrame = document.createElement("div");
+        currentQuestFrame.id = QUEST_FRAME + i;
+        let currentQuest = document.createElement("b");
         currentQuest.innerText = (Number(i) + 1) + " " + questions[i].question;
         
-        quizContainer.appendChild(currentQuest);
+        currentQuestFrame.appendChild(currentQuest);
         let currentForm = createRadioAns(questions[i]);
-        quizContainer.appendChild(currentForm);
+        currentQuestFrame.appendChild(currentForm);
+        quizContainer.appendChild(currentQuestFrame);
     }
+    let buttContainer = document.getElementById("buttonSubmit");
+    buttContainer.appendChild(createSubmitButton());
 }
 
 function createRadioAns(question) {
     let questionview = document.createElement("div");
     let form = createForm();
     for(let i =0; i < question.choices.length; i++) {
-        let radio = createRadioBtns(i);
+        let radio = createRadioBtns(radioCount);
         form.appendChild(radio);
         let label = createLabel(i, question.choices[i]);
         form.appendChild(label);
@@ -38,10 +45,12 @@ function createLabel(index, choiceDesc) {
 }
 
 function createRadioBtns(choiceNumber) {
+    radioCount = radioCount + 1;
     let radio = document.createElement("input");
     radio.setAttribute("type", "radio");
     radio.setAttribute("name", "choice");
     radio.id = "radioCheck" + choiceNumber;
+    radio.className = "checkbox";
     console.log(radio.id);
     radio.setAttribute("value", choiceNumber);
     return radio;
@@ -56,4 +65,22 @@ function createForm() {
 
 function createBR() {
     return document.createElement("br");
+}
+
+function createSubmitButton() {
+    let btn = document.createElement("button");
+    btn.id = "submitButtonID";
+    btn.className = "btn btn-success submitButt";
+    btn.setAttribute("onclick", "markQuiz()");
+    btn.innerText = "Submit Quiz";
+    return btn;
+}
+
+function changeToResetButton() {
+    let btn = document.getElementById("submitButtonID");
+    btn.setAttribute("onclick", "reloadPage()");
+}
+
+function reloadPage() {
+    
 }
