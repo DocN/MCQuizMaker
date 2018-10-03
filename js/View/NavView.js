@@ -1,3 +1,4 @@
+//creates navigation top 
 function createNavs() {
     let navIndex = new NavItem("Quiz", "quiz.html");
     let navAdmin = new NavItem("Admin", "admin.html");
@@ -5,6 +6,7 @@ function createNavs() {
     createNavItem(navAdmin);
 }
 
+//creates the item frame abd attaches it to the nav bar
 function createNavItem(item) {
     let navItem = document.createElement("a");
     navItem.href = item.url;

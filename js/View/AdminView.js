@@ -50,7 +50,11 @@ function showQuizCreator() {
     //create header 
     let createQHeader = document.createElement("h3");
     createQHeader.innerText = "Please enter a quiz question";
+
+    let errorBox = createErrorBox();
+
     addQuestionContainer.appendChild(createQHeader);
+    addQuestionContainer.appendChild(errorBox);
     addQuestionContainer.appendChild(createQuestionBox());
     addQuestionContainer.className = "quizQuestion";
     let createFormContainer = createFContainer();
@@ -73,6 +77,12 @@ function showQuizCreator() {
     addQuestionContainer.appendChild(createBtnCancel());
 }
 
+function createErrorBox() {
+    let errorBox = document.createElement("h4");
+    errorBox.id = "errorBox";
+    errorBox.style.color = "red";
+    return errorBox;
+}
 function createQuestionBox() {
     //create textbox 
     let createQuestTextbox = document.createElement("input");
@@ -129,6 +139,7 @@ function createLabel(choiceNumber) {
 
 function createBtnSubmit() {
     let btn = document.createElement("button");
+    btn.id = "submitCreateBtn";
     btn.className = "btn btn-success btnMargin";
     btn.setAttribute("onclick", "submitQuizQuestion()");
     btn.innerText = "Add Question";
@@ -194,12 +205,16 @@ function createTableHeader() {
     header2.setAttribute("scope", "col");
     header2.innerText = "Choices";
     let header3 = document.createElement("th");
-    header3.innerText = "Delete";
+    header3.innerText = "Edit";
     header3.setAttribute("scope", "col");
+    let header4 = document.createElement("th");
+    header4.innerText = "Delete";
+    header4.setAttribute("scope", "col");
     tr.appendChild(header0);
     tr.appendChild(header1);
     tr.appendChild(header2);
     tr.appendChild(header3);
+    tr.appendChild(header4);
     return tr;
 }
 
@@ -240,6 +255,7 @@ function createRow(currentQuestion) {
 
     tr.appendChild(questionTD);
     tr.appendChild(choices);
+    tr.appendChild(createEdit(tableCount));
     tr.appendChild(createDelete(tableCount));
     return tr;
 }
@@ -252,6 +268,16 @@ function createDelete(counter) {
     deleter.setAttribute("onclick", "removeQuestion(this.id)");
     return deleter;
 }
+
+function createEdit(counter) {
+    let editer = document.createElement("td");
+    editer.innerText = "Edit";
+    editer.id = "editQuestion" + counter;
+    editer.className = "editQuestion";
+    editer.setAttribute("onclick", "editQuestion(this.id)");
+    return editer;
+}
+
 
 function tester() {
     console.log("test");
