@@ -23,6 +23,12 @@ function markQuiz() {
         let answers = getAnswers();
         let marked = compareAnswers(answers);
         postResults(marked);
+        showScore(marked);
+        disableRadios();
+        changeToResetButton();
+    }
+    else {
+        showError();
     }
 }
 
@@ -84,7 +90,6 @@ function postResults(marked) {
         }
         currentQuestion.appendChild(correct);
     }
-    disableRadios();
 }
 
 function disableRadios() {
@@ -93,4 +98,45 @@ function disableRadios() {
     for (i = 0; i < x.length; i++) {
         x[i].disabled = true;
     }
+}
+
+function reloadPage() {
+    location.reload();
+}
+
+function showError() {
+    let error = document.createElement("h1");
+    error.innerText = "PLEASE ANSWER ALL THE QUESTIONS";
+    let errorcontainer = document.getElementById("error");
+    errorcontainer.appendChild(error);
+}
+
+function showScore(marked) {
+    let score = document.createElement("h1");
+    let myScore = checkMarked(marked);
+    score.innerText = "You scored " + myScore + "%";
+    let errorcontainer = document.getElementById("error");
+    errorcontainer.innerHTML = "";
+    errorcontainer.appendChild(score);
+    if(myScore >= 50) {
+        errorcontainer.style.color = "green";
+    }
+    else {
+        errorcontainer.style.color = "red";
+    }
+    
+}
+
+function checkMarked(marked) {
+    let wrong = 0;
+    let correct = 0;
+    for(let i =0; i < marked.length; i++) {
+        if(marked[i] == true) {
+            correct++;
+        }
+        else {
+            wrong++;
+        }
+    }  
+    return ((correct)/(wrong+correct)*100);
 }

@@ -9,7 +9,11 @@ function setTitle() {
 
 function createQuiz() {
     let quizContainer = document.getElementById("quizContainer");
-    
+    if(questions.length <= 0) {
+        let noQuizHere = noQuiz();
+        quizContainer.appendChild(noQuizHere);
+        return;
+    }
     for(let i =0; i < questions.length; i++) {
         let currentQuestFrame = document.createElement("div");
         currentQuestFrame.id = QUEST_FRAME + i;
@@ -25,6 +29,12 @@ function createQuiz() {
     buttContainer.appendChild(createSubmitButton());
 }
 
+function noQuiz() {
+    let noQuiz = document.createElement("h1");
+    noQuiz.className = "noQuiz";
+    noQuiz.innerText = "There's no quiz here buddy";
+    return noQuiz;
+}
 function createRadioAns(question) {
     let questionview = document.createElement("div");
     let form = createForm();
@@ -79,8 +89,6 @@ function createSubmitButton() {
 function changeToResetButton() {
     let btn = document.getElementById("submitButtonID");
     btn.setAttribute("onclick", "reloadPage()");
-}
-
-function reloadPage() {
-    
+    btn.className = "btn btn-primary submitButt";
+    btn.innerText = "Retake Quiz";
 }

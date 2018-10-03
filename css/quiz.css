@@ -22,3 +22,12 @@
     color:green;
     font-weight:500;
 }
+#error {
+    color:red;
+    text-align: center;
+}
+
+.noQuiz {
+    text-align: center;
+    color:blue;
+}
