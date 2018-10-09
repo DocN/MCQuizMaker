@@ -43,13 +43,19 @@ function submitQuizQuestion() {
     }
     
     let answer = getRadioCheck();
-    let currentQues = new Question(question, choices, answer);
+    let difficulty = getDifficulty();
+    let currentQues = new Question(question, choices, answer, difficulty);
     questions.push(currentQues);
     //console.log(questions);
     showQuestions();
     //closeQuizCreate();
 }
 
+function getDifficulty() {
+    let diffBtn = document.getElementById("difficultyBtn");
+    console.log(diffBtn.innerText)
+    return diffBtn.innerText;
+}
 //gets the radiocheck value
 function getRadioCheck() {
     for(let i=1; i <=4; i++) {
@@ -83,8 +89,8 @@ function saveStorage() {
 //load from local storage
 function loadStorage() {
     let firebaseData = new Firebase();
-    //firebaseData.getQuestions();
-    questions = JSON.parse(localStorage.getItem('quiz'));
+    firebaseData.getQuestions();
+    //questions = JSON.parse(localStorage.getItem('quiz'));
     if(questions == null) {
         questions = [];
     }

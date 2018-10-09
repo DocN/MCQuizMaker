@@ -77,10 +77,31 @@ function showQuizCreator() {
         form.appendChild(createBR());
     }
     createFormContainer.appendChild(form);
+    createFormContainer.appendChild(createDifficultyBtn());
     addQuestionContainer.appendChild(createFormContainer);
     addQuestionContainer.appendChild(createBtnSubmit());
     addQuestionContainer.appendChild(createBtnClear());
     addQuestionContainer.appendChild(createBtnCancel());
+}
+
+function createDifficultyBtn() {
+    let btn = document.createElement("button");
+    btn.className = "btn btn-success btnMargin";
+    btn.id = "difficultyBtn";
+    btn.setAttribute("onclick", "setDifficulty(this)");
+    btn.innerText = "Easy";
+    return btn; 
+}
+
+function setDifficulty(btn) {
+    if(btn.innerText == "Easy") {
+        btn.innerText = "Hard";
+        btn.className = "btn btn-danger btnMargin";
+    }
+    else {
+        btn.innerText = "Easy";
+        btn.className = "btn btn-success btnMargin";
+    }
 }
 
 //creates the error message frame
@@ -180,9 +201,6 @@ function createBtnCancel() {
 //quiz overview
 function showQuestions() {
     tableCount = 0;
-    for(let i =0; i < questions.length; i++) {
-        console.log(questions[i]);
-    }
     questionOverview.innerHTML = "";
     questionOverview.appendChild(createTable());
 }

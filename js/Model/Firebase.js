@@ -22,7 +22,8 @@ class Firebase {
       var current = {
         choices: questions[i].choices,
         question: questions[i].question,
-        answer: questions[i].answer
+        answer: questions[i].answer,
+        difficulty: questions[i].difficulty
       }
       db.collection("questions").add(current)
       .then(function(docRef) {
@@ -45,11 +46,16 @@ class Firebase {
     });
     
   }
-  
+
+
   getQuestions() {
-    return firebase.database().ref('/questions').once('value').then(function(snapshot) {
-      questions = JSON.parse(snapshot.val().questions);
-      showQuestions();
+    questions = [];
+    var jobskill_query = db.collection('questions');
+    jobskill_query.get().then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        questions.push(doc.data());
+        showQuestions();
+      });
     });
   }
 }
