@@ -124,6 +124,16 @@ function editQuestion(val) {
     }
     currentEdit = count;
     resetRadioCreate(count);
+    if(questions[count].difficulty == "Easy") {
+        let btn = document.getElementById("difficultyBtn")
+        btn.innerText = "Easy";
+        btn.className = "btn btn-success btnMargin";
+    }
+    else {
+        let btn = document.getElementById("difficultyBtn")
+        btn.innerText = "Hard";
+        btn.className = "btn btn-danger btnMargin";
+    }
     changeUpdateButton();
 }
 
@@ -154,10 +164,15 @@ function editVal() {
         questions[currentEdit].choices[i] = currentInput.value;
     }
     questions[currentEdit].answer = getRadioEditAns();
+    questions[currentEdit].difficulty = getDifficulty();
     closeQuizCreate();
     showQuestions();
 }
 
+function getDifficulty() {
+    let btn = document.getElementById("difficultyBtn");
+    return btn.innerText;
+}
 //gets the answer from the radio button form
 function getRadioEditAns() {
     for(let i =1; i <= 4; i++) {

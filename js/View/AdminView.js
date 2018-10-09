@@ -239,6 +239,9 @@ function createTableHeader() {
     let header2 = document.createElement("th");
     header2.setAttribute("scope", "col");
     header2.innerText = "Choices";
+    let header5 = document.createElement("th");
+    header5.setAttribute("scope", "col");
+    header5.innerText = "Difficulty";
     let header3 = document.createElement("th");
     header3.innerText = "Edit";
     header3.setAttribute("scope", "col");
@@ -248,6 +251,7 @@ function createTableHeader() {
     tr.appendChild(header0);
     tr.appendChild(header1);
     tr.appendChild(header2);
+    tr.appendChild(header5);
     tr.appendChild(header3);
     tr.appendChild(header4);
     return tr;
@@ -290,13 +294,21 @@ function createRow(currentQuestion) {
     let answer = document.createElement("td");
     answer.innerText = currentQuestion.answer;
 
+    console.log(currentQuestion.difficulty);
     tr.appendChild(questionTD);
     tr.appendChild(choices);
+    tr.appendChild(getDifficultyFromBtn(currentQuestion));
     tr.appendChild(createEdit(tableCount));
     tr.appendChild(createDelete(tableCount));
     return tr;
 }
 
+function getDifficultyFromBtn(currentQuestion) {
+    let diff = document.createElement("td");
+    diff.innerText = currentQuestion.difficulty;
+    diff.className = "editQuestion";
+    return diff;
+}
 //creates a delete button for removing quiz question
 function createDelete(counter) {
     let deleter = document.createElement("td");
