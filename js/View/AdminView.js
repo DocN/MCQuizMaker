@@ -36,6 +36,7 @@ function createQuestionBtn() {
 function createSaveBtn() {
     let btn = document.createElement("button");
     btn.className = "btn btn-primary btnMargin";
+    btn.id = "saveBtn";
     btn.setAttribute("onclick", "saveStorage()");
     btn.innerText = "Save Questions";
     return btn;
@@ -326,4 +327,30 @@ function createEdit(counter) {
     editer.className = "editQuestion";
     editer.setAttribute("onclick", "editQuestion(this.id)");
     return editer;
+}
+
+//update the submit button default to a save btn
+function changeUpdateButton() {
+    let submitBut = document.getElementById("submitCreateBtn");
+    submitBut.setAttribute("onclick", "editVal()");
+    submitBut.innerText = "Save Edit";
+}
+
+function toggleEditBtn() {
+    let submitBut = document.getElementById("submitCreateBtn");
+    submitBut.setAttribute("onclick", "");
+}
+
+function toggleSaveBtn() {
+    let saveBtn = document.getElementById("saveBtn");
+    if(saveBtn.getAttribute("onclick") == "") {
+        saveBtn.setAttribute("onclick", "saveStorage()");
+        saveBtn.className = "btn btn-primary btnMargin";
+        saveBtn.innerText = "Save Questions"
+    }
+    else {
+        saveBtn.setAttribute("onclick", "");
+        saveBtn.className = "btn btn-danger btnMargin";
+        saveBtn.innerText = "Saving..."
+    }
 }

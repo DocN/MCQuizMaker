@@ -144,13 +144,7 @@ function resetRadioCreate(count) {
     document.getElementById(radioCheck + ans).checked = true;
 }
 
-//update the submit button default to a save btn
-function changeUpdateButton() {
-    let submitBut = document.getElementById("submitCreateBtn");
-    submitBut.setAttribute("onclick", "editVal()");
-    submitBut.innerText = "Save Edit";
 
-}
 
 //submits the editing values
 function editVal() {
@@ -168,6 +162,7 @@ function editVal() {
     closeQuizCreate();
     showQuestions();
 }
+
 
 function getDifficulty() {
     let btn = document.getElementById("difficultyBtn");

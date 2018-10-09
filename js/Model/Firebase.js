@@ -13,11 +13,13 @@ class Firebase {
   }
 
   writeFireStorage() {
+    toggleSaveBtn();
     this.removeCollection();
     //this.writeNewQuestions();
   }
 
   writeNewQuestions() {
+    var count = 0; 
     for(let i =0; i < questions.length; i++) {
       var current = {
         choices: questions[i].choices,
@@ -28,6 +30,10 @@ class Firebase {
       db.collection("questions").add(current)
       .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);
+          count++;
+          if(count == (questions.length)) {
+            toggleSaveBtn();
+          }
       })
       .catch(function(error) {
           console.error("Error adding document: ", error);
