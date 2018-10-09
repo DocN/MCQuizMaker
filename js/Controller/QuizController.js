@@ -7,19 +7,21 @@ function loadView() {
     setTitle();
     createNavs();
     loadStorage();
-    createQuiz();
+    
     //load overview questions
     
 }
 
-//load local storage quiz questions
+//load from local storage
 function loadStorage() {
-    questions = JSON.parse(localStorage.getItem('quiz'));
+    let firebaseData = new Firebase();
+    firebaseData.getQuestionsQuiz();
+    //questions = JSON.parse(localStorage.getItem('quiz'));
     if(questions == null) {
         questions = [];
     }
-    console.log(questions);
 }
+
 
 //mark the quiz 
 function markQuiz() {

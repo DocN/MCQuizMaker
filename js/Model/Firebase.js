@@ -64,4 +64,14 @@ class Firebase {
       });
     });
   }
+  getQuestionsQuiz() {
+    questions = [];
+    var jobskill_query = db.collection('questions');
+    jobskill_query.get().then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        questions.push(doc.data());
+        createQuiz();
+      });
+    });
+  }
 }

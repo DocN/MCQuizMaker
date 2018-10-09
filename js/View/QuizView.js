@@ -28,6 +28,7 @@ function createQuiz() {
         quizContainer.appendChild(currentQuestFrame);
     }
     let buttContainer = document.getElementById("buttonSubmit");
+    buttContainer.innerHTML = "";
     buttContainer.appendChild(createSubmitButton());
 }
 
@@ -68,7 +69,6 @@ function createRadioBtns(choiceNumber) {
     radio.setAttribute("name", "choice");
     radio.id = "radioCheck" + choiceNumber;
     radio.className = "checkbox";
-    console.log(radio.id);
     radio.setAttribute("value", choiceNumber);
     return radio;
 }
