@@ -2,6 +2,7 @@ var questions = [];
 const quizChoiceInput = "quizChoiceInput";
 const radioCheck = "radioCheck";
 var currentEdit = 0;
+
 //start admin page functions onload
 function onload() {
     loadStorage();
@@ -44,7 +45,7 @@ function submitQuizQuestion() {
     let answer = getRadioCheck();
     let currentQues = new Question(question, choices, answer);
     questions.push(currentQues);
-    console.log(questions);
+    //console.log(questions);
     showQuestions();
     //closeQuizCreate();
 }
@@ -73,11 +74,16 @@ function removeQuestion(val) {
 
 //save to local storage
 function saveStorage() {
-    localStorage.setItem('quiz', JSON.stringify(questions));
+    let firebaseData = new Firebase();
+    //firebaseData.writeQuestions(questions);
+    firebaseData.writeFireStorage();
+    //localStorage.setItem('quiz', JSON.stringify(questions));
 }
 
 //load from local storage
 function loadStorage() {
+    let firebaseData = new Firebase();
+    //firebaseData.getQuestions();
     questions = JSON.parse(localStorage.getItem('quiz'));
     if(questions == null) {
         questions = [];
