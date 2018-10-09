@@ -1,21 +1,40 @@
 var questions = [];
 const RADIOBUTTS = "radioCheck";
-
+var difficulty = false;
 //load stuff on start
 function loadView() {
     console.log("quiz loaded");
     setTitle();
     createNavs();
-    loadStorage();
-    
+    optionSelect();
+
     //load overview questions
     
 }
 
+function selectHard() {
+    difficulty = true;
+    loadStorage();
+}
+
+function selectEasy() {
+    difficulty = false;
+    loadStorage();
+}
+
+
 //load from local storage
 function loadStorage() {
     let firebaseData = new Firebase();
-    firebaseData.getQuestionsQuiz();
+    //hard
+    if(difficulty) {
+        firebaseData.getQuestionsQuiz("Hard");
+    }
+    //easy
+    else {
+        firebaseData.getQuestionsQuiz("Easy");
+    }
+    
     //questions = JSON.parse(localStorage.getItem('quiz'));
     if(questions == null) {
         questions = [];

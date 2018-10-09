@@ -8,8 +8,44 @@ function setTitle() {
     title.innerText = PAGE_TITLE;
 }
 
+function optionSelect() {
+    let quizContainer = document.getElementById("quizContainer");
+    quizContainer.appendChild(createBootstrapContainer());
+}
+
+function createEasyHardBtn(container) {
+    let easy = document.createElement("button");
+    easy.setAttribute("onclick", "selectEasy()");
+    easy.className = "btn btn-success bigbutton";
+    easy.innerText = "Easy";
+
+    let hard = document.createElement("button");
+    hard.setAttribute("onclick", "selectHard()");
+    hard.className = "btn btn-danger btnmargin bigbutton";
+    hard.innerText = "Hard";
+    container.innerHTML = "";
+    container.appendChild(easy);
+    container.appendChild(hard);
+    return container;
+}
+
+function createBootstrapContainer() {
+    let container = document.createElement("div");
+    container.className = "container";
+
+    let row = document.createElement("div");
+    row.className = "row";
+    let col12 = document.createElement("div");
+    col12.className = "col-12 difficultyDiv";
+    
+    row.appendChild(createEasyHardBtn(col12));
+    container.appendChild(row);
+    return container;
+}
+
 //creates the quiz to answer
 function createQuiz() {
+    radioCount = 1;
     let quizContainer = document.getElementById("quizContainer");
     quizContainer.innerHTML = "";
     if(questions.length <= 0) {

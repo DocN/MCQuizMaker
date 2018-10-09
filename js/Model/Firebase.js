@@ -64,9 +64,10 @@ class Firebase {
       });
     });
   }
-  getQuestionsQuiz() {
+
+  getQuestionsQuiz(selectedDifficulty) {
     questions = [];
-    var jobskill_query = db.collection('questions');
+    var jobskill_query = db.collection('questions').where("difficulty", "==", selectedDifficulty);
     jobskill_query.get().then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
         questions.push(doc.data());

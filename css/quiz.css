@@ -2,6 +2,7 @@
     padding:10px;
     width:100%;
     border:1px solid black;
+    min-height:80vh;
 }
 
 #buttonSubmit {
@@ -32,3 +33,16 @@
     color:blue;
 }
 
+.difficultyDiv {
+    margin-top:30vh;
+    text-align:center;
+}
+
+.btnmargin {
+    margin-left:20px;
+}
+
+.bigbutton {
+    height:5em;
+    width:40%;
+}
