@@ -8,11 +8,13 @@ function setTitle() {
     title.innerText = PAGE_TITLE;
 }
 
+//creates the container for selecting difficulty
 function optionSelect() {
     let quizContainer = document.getElementById("quizContainer");
     quizContainer.appendChild(createBootstrapContainer());
 }
 
+//creates the buttons for selecting difficulty
 function createEasyHardBtn(container) {
     let easy = document.createElement("button");
     easy.setAttribute("onclick", "selectEasy()");
@@ -29,6 +31,7 @@ function createEasyHardBtn(container) {
     return container;
 }
 
+//creates the container for hard/easy buttons
 function createBootstrapContainer() {
     let container = document.createElement("div");
     container.className = "container";

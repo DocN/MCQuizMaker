@@ -66,3 +66,12 @@ form {
 .editQuestion {
     cursor: pointer;
 }
+
+#reminder {
+    text-align:center;
+    color:red;
+}
+
+.reminderText {
+    color:red;
+}

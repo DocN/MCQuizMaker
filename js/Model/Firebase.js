@@ -2,6 +2,7 @@ class Firebase {
   constructor() {
 
   }
+  /* firebase method stringify and store in one value
   writeQuestions(questions) {
     let stringData = JSON.stringify(questions);
     this.storetoFBQuestions(stringData);
@@ -11,13 +12,15 @@ class Firebase {
       questions: stringData,
     });
   }
+  */
 
+  //executes writing current questions to database
   writeFireStorage() {
     toggleSaveBtn();
     this.removeCollection();
-    //this.writeNewQuestions();
   }
 
+  //writing questions
   writeNewQuestions() {
     var count = 0; 
     for(let i =0; i < questions.length; i++) {
@@ -33,6 +36,8 @@ class Firebase {
           count++;
           if(count == (questions.length)) {
             toggleSaveBtn();
+            toggleReminderVal = false;
+            toggleReminder(toggleReminderVal);
           }
       })
       .catch(function(error) {
@@ -41,6 +46,7 @@ class Firebase {
     }
   }
 
+  //reset collection 
   removeCollection() {
     var jobskill_query = db.collection('questions');
     jobskill_query.get().then(function(querySnapshot) {
@@ -53,7 +59,7 @@ class Firebase {
     
   }
 
-
+  //gets questions for admin page
   getQuestions() {
     questions = [];
     var jobskill_query = db.collection('questions');
@@ -65,6 +71,7 @@ class Firebase {
     });
   }
 
+  //retrieves questions based on difficulty
   getQuestionsQuiz(selectedDifficulty) {
     questions = [];
     var jobskill_query = db.collection('questions').where("difficulty", "==", selectedDifficulty);

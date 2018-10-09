@@ -2,6 +2,7 @@ var questions = [];
 const quizChoiceInput = "quizChoiceInput";
 const radioCheck = "radioCheck";
 var currentEdit = 0;
+var toggleReminderVal = false;
 
 //start admin page functions onload
 function onload() {
@@ -46,16 +47,32 @@ function submitQuizQuestion() {
     let difficulty = getDifficulty();
     let currentQues = new Question(question, choices, answer, difficulty);
     questions.push(currentQues);
-    //console.log(questions);
     showQuestions();
-    //closeQuizCreate();
+    toggleReminderVal = true;
+    toggleReminder(toggleReminder);
 }
 
+//changes the status if we need to remind to save or not.
+function toggleReminder(enable) {
+    let remindercontainer = document.getElementById("reminder");
+    remindercontainer.innerHTML = "";
+    let reminder = document.createElement("h1");
+    if(enable) {
+        reminder.innerText = "Don't forget to save your changes!!";
+        reminder.className = "reminderText";
+    }
+    else {
+        reminder.innerText = "";
+    }
+    remindercontainer.appendChild(reminder);
+}
+
+//gets the current difficulty 
 function getDifficulty() {
     let diffBtn = document.getElementById("difficultyBtn");
-    console.log(diffBtn.innerText)
     return diffBtn.innerText;
 }
+
 //gets the radiocheck value
 function getRadioCheck() {
     for(let i=1; i <=4; i++) {
@@ -163,7 +180,7 @@ function editVal() {
     showQuestions();
 }
 
-
+//gets the current difficulty
 function getDifficulty() {
     let btn = document.getElementById("difficultyBtn");
     return btn.innerText;
@@ -178,3 +195,15 @@ function getRadioEditAns() {
     }
     return -1;
 }
+
+//for preventing page leave when unsaved
+window.onbeforeunload = function(event) {
+    if(toggleReminderVal == false) {
+        return;
+    }
+    var e = e || window.event;
+    if (e) {
+        e.returnValue = message;
+    }
+    return message;
+};

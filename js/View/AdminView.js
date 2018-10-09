@@ -84,7 +84,7 @@ function showQuizCreator() {
     addQuestionContainer.appendChild(createBtnClear());
     addQuestionContainer.appendChild(createBtnCancel());
 }
-
+//creates a difficulty button
 function createDifficultyBtn() {
     let btn = document.createElement("button");
     btn.className = "btn btn-success btnMargin";
@@ -94,6 +94,7 @@ function createDifficultyBtn() {
     return btn; 
 }
 
+//sets the difficulty onclick
 function setDifficulty(btn) {
     if(btn.innerText == "Easy") {
         btn.innerText = "Hard";
@@ -156,7 +157,6 @@ function createRadioBtns(choiceNumber) {
     radio.setAttribute("type", "radio");
     radio.setAttribute("name", "choice");
     radio.id = "radioCheck" + choiceNumber;
-    console.log(radio.id);
     if(choiceNumber == 1) {
         radio.setAttribute("checked", "checked");
     }
@@ -295,7 +295,6 @@ function createRow(currentQuestion) {
     let answer = document.createElement("td");
     answer.innerText = currentQuestion.answer;
 
-    console.log(currentQuestion.difficulty);
     tr.appendChild(questionTD);
     tr.appendChild(choices);
     tr.appendChild(getDifficultyFromBtn(currentQuestion));
@@ -304,6 +303,7 @@ function createRow(currentQuestion) {
     return tr;
 }
 
+//gets the difficulty for edit mode
 function getDifficultyFromBtn(currentQuestion) {
     let diff = document.createElement("td");
     diff.innerText = currentQuestion.difficulty;
@@ -336,11 +336,13 @@ function changeUpdateButton() {
     submitBut.innerText = "Save Edit";
 }
 
+//disable edit button when applying changes
 function toggleEditBtn() {
     let submitBut = document.getElementById("submitCreateBtn");
     submitBut.setAttribute("onclick", "");
 }
 
+//changes the status of save button when saving
 function toggleSaveBtn() {
     let saveBtn = document.getElementById("saveBtn");
     if(saveBtn.getAttribute("onclick") == "") {
