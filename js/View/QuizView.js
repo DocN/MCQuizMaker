@@ -11,6 +11,7 @@ function setTitle() {
 //creates the quiz to answer
 function createQuiz() {
     let quizContainer = document.getElementById("quizContainer");
+    quizContainer.innerHTML = "";
     if(questions.length <= 0) {
         let noQuizHere = noQuiz();
         quizContainer.appendChild(noQuizHere);
